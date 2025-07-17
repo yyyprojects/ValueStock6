@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What is a Value Stock? An Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #073B4C; }
+        .chart-container { position: relative; width: 100%; max-width: 700px; margin-left: auto; margin-right: auto; height: 350px; max-height: 45vh; }
+        @media (min-width: 768px) { .chart-container { height: 400px; } }
+        .nav-link { transition: color 0.3s, border-color 0.3s; color: #073B4C; border-bottom: 2px solid transparent; padding-bottom: 4px; }
+        .nav-link:hover { color: #118AB2; }
+        .nav-link.active { color: #118AB2; border-bottom-color: #118AB2; font-weight: 600; }
+        .metric-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .metric-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+        .flow-step { background-color: white; border: 1px solid #e5e7eb; padding: 1.5rem; border-radius: 0.75rem; text-align: center; flex: 1; min-width: 200px; }
+        .flow-arrow { display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #FFD166; margin: 1rem 0; transform: rotate(90deg); }
+        @media (min-width: 1024px) { .flow-arrow { margin: 0 1.5rem; transform: rotate(0deg); } }
+    </style>
+</head>
+<body>
+<!-- Chosen Palette: Energetic & Playful -->
+<!-- Application Structure Plan: The infographic follows a narrative journey. 1. Hook: A simple, relatable analogy ('Shopping for Bargains'). 2. Deep Dive: 'How to Find Them' with interactive cards for key metrics. 3. Context: 'Value vs. Growth' using an interactive comparison chart and side-by-side text. 4. Process: 'The Investor's Workflow', a step-by-step flowchart. 5. Warning: 'The Biggest Risk' (Value Trap). This structure guides a novice from a high-level concept to practical application and cautionary advice, prioritizing learning flow over a rigid report format. -->
+<!-- Visualization & Content Choices:
+- Data Point: Core definition of a value stock. Goal: Inform. Visualization: Large text & Unicode emoji (🛍️). Justification: A simple, memorable analogy is most effective for a new concept.
+- Data Point: P/E, P/B, Dividend Yield metrics. Goal: Inform/Organize. Visualization: Interactive HTML cards. Justification: Breaks down jargon into digestible, user-initiated chunks without overwhelming them. No SVG used.
+- Data Point: Comparing typical metrics of Value vs. Growth stocks. Goal: Compare. Visualization: Interactive Bar Chart (Chart.js/Canvas). Justification: Visually powerful for comparing categories. Interaction (toggling metrics) enhances engagement and discovery. Confirms NO SVG.
+- Data Point: The process of identifying a value stock. Goal: Organize. Visualization: HTML/CSS Flowchart. Justification: Clearly illustrates a sequence of actions using accessible web tech, avoiding prohibited SVG/Mermaid.
+- Data Point: The concept of a value trap. Goal: Inform. Visualization: High-contrast warning card with Unicode emoji (⚠️). Justification: Visually signals a critical risk, separating it from other content.
+-->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+<header class="bg-white/90 backdrop-blur-lg sticky top-0 z-50 border-b border-slate-200">
+    <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+        <h1 class="text-xl font-bold text-[#118AB2]">Value Stock Explorer</h1>
+        <div class="hidden md:flex items-center space-x-8">
+            <a href="#definition" class="nav-link active">The Big Idea</a>
+            <a href="#metrics" class="nav-link">Key Metrics</a>
+            <a href="#comparison" class="nav-link">Comparison</a>
+            <a href="#process" class="nav-link">Process</a>
+            <a href="#risk" class="nav-link">Risks</a>
+        </div>
+    </nav>
+</header>
+
+<main class="container mx-auto px-6 py-12 md:py-20">
+
+    <section id="definition" class="text-center scroll-mt-20">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl md:text-6xl font-extrabold text-[#073B4C] mb-4">It's Like Shopping for Bargains.</h2>
+            <p class="text-lg md:text-xl text-slate-600 leading-relaxed mb-10">
+                This infographic starts with a simple, powerful analogy to introduce the core concept of value investing. The goal isn't to be technical, but to make the idea intuitive and accessible for someone with no financial background.
+            </p>
+            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-slate-100">
+                <span class="text-7xl">🛍️</span>
+                <p class="text-2xl font-bold mt-4 mb-3 text-[#118AB2]">A value stock is a good company on sale.</p>
+                <p class="text-slate-600 max-w-2xl mx-auto">
+                    Imagine a well-made, high-quality product that's temporarily unpopular and marked down. A value stock is the same: it's a share in a solid, profitable company that the market has overlooked or unfairly punished, causing its price to trade below its true, intrinsic worth. Value investors hunt for these hidden gems.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="metrics" class="py-20 md:py-28 scroll-mt-20">
+        <div class="text-center max-w-3xl mx-auto">
+            <p class="font-semibold text-[#118AB2] mb-2">THE INVESTOR'S TOOLKIT</p>
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-5">How to Find Them</h2>
+            <p class="text-lg text-slate-600 leading-relaxed mb-12">
+                Investors use specific financial "metrics" to hunt for these bargains. This section introduces the most common tools. Click each card to flip it and reveal a simple explanation, allowing you to learn at your own pace.
+            </p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            <div class="metric-card bg-white p-6 rounded-2xl shadow-lg border border-slate-100 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                <div class="flex items-center gap-4">
+                    <span class="text-4xl bg-[#FFD166]/20 p-3 rounded-lg">🏷️</span>
+                    <h3 class="text-2xl font-bold">Low P/E Ratio</h3>
+                </div>
+                <p class="mt-4 text-slate-500">The Price-to-Earnings ratio shows if a stock is cheap relative to its profits. A lower P/E is often a good sign.</p>
+            </div>
+            <div class="metric-card bg-white p-6 rounded-2xl shadow-lg border border-slate-100 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                 <div class="flex items-center gap-4">
+                    <span class="text-4xl bg-[#06D6A0]/20 p-3 rounded-lg">📚</span>
+                    <h3 class="text-2xl font-bold">Low P/B Ratio</h3>
+                </div>
+                <p class="mt-4 text-slate-500">The Price-to-Book ratio compares price to the company's net assets. Below 1.0 can be a strong signal.</p>
+            </div>
+            <div class="metric-card bg-white p-6 rounded-2xl shadow-lg border border-slate-100 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                 <div class="flex items-center gap-4">
+                    <span class="text-4xl bg-[#FF6B6B]/20 p-3 rounded-lg">💰</span>
+                    <h3 class="text-2xl font-bold">High Dividend Yield</h3>
+                </div>
+                <p class="mt-4 text-slate-500">A high dividend yield means the company pays you well just to own the stock, offering income while you wait.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="comparison" class="py-20 md:py-28 scroll-mt-20 bg-slate-100 rounded-3xl">
+        <div class="text-center max-w-3xl mx-auto">
+            <p class="font-semibold text-[#118AB2] mb-2">THE TWO PHILOSOPHIES</p>
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-5">Value vs. Growth</h2>
+            <p class="text-lg text-slate-600 leading-relaxed mb-12">
+                The opposite of value investing is "growth" investing. This interactive chart lets you see how their typical metrics stack up, while the cards below summarize their core differences. Understanding both helps clarify what makes value unique.
+            </p>
+        </div>
+        <div class="bg-white p-6 md:p-8 rounded-2xl shadow-xl border border-slate-200 max-w-4xl mx-auto">
+             <div class="flex justify-center space-x-2 md:space-x-4 mb-6">
+                <button id="btn-pe" class="bg-[#118AB2] text-white px-5 py-2 rounded-lg font-semibold shadow hover:bg-[#0d6b8a] transition-all duration-300">P/E Ratio</button>
+                <button id="btn-pb" class="bg-slate-200 text-slate-700 px-5 py-2 rounded-lg font-semibold hover:bg-slate-300 transition-all duration-300">P/B Ratio</button>
+            </div>
+            <div class="chart-container">
+                <canvas id="comparisonChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+     <section id="process" class="py-20 md:py-28 scroll-mt-20">
+        <div class="text-center max-w-3xl mx-auto">
+            <p class="font-semibold text-[#118AB2] mb-2">THE WORKFLOW</p>
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-5">An Investor's Process</h2>
+            <p class="text-lg text-slate-600 leading-relaxed mb-12">
+                Finding a true value stock isn't just about low numbers; it involves a process of research and analysis. This flowchart visualizes a typical workflow, from initial screening to the final investment decision, built entirely with HTML and CSS.
+            </p>
+        </div>
+        <div class="flex flex-col lg:flex-row items-center justify-center max-w-6xl mx-auto">
+            <div class="flow-step shadow-md">
+                <h3 class="font-bold text-lg mb-2">1. Screen for Metrics</h3>
+                <p class="text-slate-500 text-sm">Use software to find companies with low P/E, low P/B, and good dividend yields.</p>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step shadow-md">
+                <h3 class="font-bold text-lg mb-2">2. Fundamental Analysis</h3>
+                <p class="text-slate-500 text-sm">Dig into the company's health. Is it profitable? Is debt manageable? Is it a leader in its industry?</p>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step shadow-md">
+                <h3 class="font-bold text-lg mb-2">3. Understand the "Why"</h3>
+                <p class="text-slate-500 text-sm">Why is it cheap? Is it a temporary problem (good) or a permanent decline (bad)?</p>
+            </div>
+             <div class="flow-arrow">→</div>
+             <div class="flow-step shadow-md">
+                <h3 class="font-bold text-lg mb-2">4. Margin of Safety</h3>
+                <p class="text-slate-500 text-sm">Calculate its intrinsic value. Is the current price significantly lower? This is your cushion against error.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="risk" class="py-20 md:py-28 scroll-mt-20 bg-slate-800 rounded-3xl">
+        <div class="text-center max-w-3xl mx-auto">
+             <p class="font-semibold text-[#FFD166] mb-2">THE BIGGEST PITFALL</p>
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-12 text-white">Beware the Value Trap</h2>
+        </div>
+        <div class="max-w-3xl mx-auto bg-[#073B4C] border-l-4 border-[#FF6B6B] p-8 rounded-r-lg shadow-2xl">
+            <div class="flex items-center">
+                <span class="text-5xl mr-6">⚠️</span>
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Sometimes, a stock is cheap for a reason.</h3>
+                    <p class="text-slate-300 leading-relaxed">
+                        A "value trap" is a stock that looks like a bargain but is actually a failing company. Its price is low because its business is in permanent trouble. The key challenge for investors is to differentiate a temporarily undervalued gem from a permanently broken business. This requires deep research beyond the basic numbers.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="bg-white border-t border-slate-200 py-10">
+    <div class="container mx-auto px-6 text-center text-slate-500">
+        <p>Infographic created by an AI assistant.</p>
+        <p class="text-sm">Based on value investing principles pioneered by Benjamin Graham.</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { rootMargin: '-30% 0px -70% 0px', threshold: 0 });
+        sections.forEach(section => observer.observe(section));
+
+        function wrapLabel(str, maxWidth) {
+            if (str.length <= maxWidth) return str;
+            const words = str.split(' ');
+            let lines = [];
+            let currentLine = words[0];
+            for (let i = 1; i < words.length; i++) {
+                if (currentLine.length + words[i].length + 1 < maxWidth) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        const tooltipTitleCallback = function(tooltipItems) {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+
+        const chartColors = {
+            value: '#118AB2',
+            growth: '#FF6B6B',
+            average: '#FFD166',
+            text: '#073B4C'
+        };
+
+        const dataPE = {
+            labels: ['Value Stock', 'Market Average', 'Growth Stock'].map(l => wrapLabel(l, 16)),
+            datasets: [{
+                label: 'Price-to-Earnings (P/E) Ratio',
+                data: [12, 22, 45],
+                backgroundColor: [chartColors.value, chartColors.average, chartColors.growth],
+                borderRadius: 6,
+            }]
+        };
+
+        const dataPB = {
+            labels: ['Value Stock', 'Market Average', 'Growth Stock'].map(l => wrapLabel(l, 16)),
+            datasets: [{
+                label: 'Price-to-Book (P/B) Ratio',
+                data: [0.9, 2.5, 8],
+                backgroundColor: [chartColors.value, chartColors.average, chartColors.growth],
+                borderRadius: 6,
+            }]
+        };
+
+        const chartConfig = {
+            type: 'bar',
+            data: dataPE,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Typical Price-to-Earnings (P/E) Ratios',
+                        font: { size: 18, weight: 'bold', family: 'Inter' },
+                        color: chartColors.text,
+                        padding: { top: 10, bottom: 20 }
+                    },
+                    tooltip: {
+                        enabled: true,
+                        backgroundColor: chartColors.text,
+                        titleFont: { size: 14, family: 'Inter', weight: 'bold' },
+                        bodyFont: { size: 12, family: 'Inter' },
+                        padding: 12,
+                        cornerRadius: 4,
+                        displayColors: false,
+                        callbacks: { title: tooltipTitleCallback }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: '#e2e8f0' },
+                        ticks: { color: '#475569', font: { family: 'Inter' } }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#475569', font: { family: 'Inter', size: 12 } }
+                    }
+                }
+            }
+        };
+
+        const ctx = document.getElementById('comparisonChart').getContext('2d');
+        const comparisonChart = new Chart(ctx, chartConfig);
+
+        const btnPE = document.getElementById('btn-pe');
+        const btnPB = document.getElementById('btn-pb');
+
+        btnPE.addEventListener('click', () => {
+            comparisonChart.data = dataPE;
+            comparisonChart.options.plugins.title.text = 'Typical Price-to-Earnings (P/E) Ratios';
+            comparisonChart.update();
+            btnPE.className = 'bg-[#118AB2] text-white px-5 py-2 rounded-lg font-semibold shadow hover:bg-[#0d6b8a] transition-all duration-300';
+            btnPB.className = 'bg-slate-200 text-slate-700 px-5 py-2 rounded-lg font-semibold hover:bg-slate-300 transition-all duration-300';
+        });
+
+        btnPB.addEventListener('click', () => {
+            comparisonChart.data = dataPB;
+            comparisonChart.options.plugins.title.text = 'Typical Price-to-Book (P/B) Ratios';
+            comparisonChart.update();
+            btnPB.className = 'bg-[#118AB2] text-white px-5 py-2 rounded-lg font-semibold shadow hover:bg-[#0d6b8a] transition-all duration-300';
+            btnPE.className = 'bg-slate-200 text-slate-700 px-5 py-2 rounded-lg font-semibold hover:bg-slate-300 transition-all duration-300';
+        });
+    });
+</script>
+</body>
+</html>
+```
